@@ -21,8 +21,8 @@ class participante(models.Model):
     edad = models.SmallIntegerField()
     direccion = models.CharField(max_length=140)
     email = models.EmailField()
-    fijo = models.BigIntegerField()
-    movil = models.BigIntegerField()
+    fijo = models.CharField(max_length=12)
+    movil = models.CharField(max_length=12)
 
     universidad = models.ForeignKey(universidad)
     facultad = models.CharField(max_length=140)
