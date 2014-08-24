@@ -1,6 +1,18 @@
 from django.db import models
 
 
+class universidad(models.Model):
+    nombre = models.CharField(max_length=140)
+
+
+class cargo(models.Model):
+    nombre = models.CharField(max_length=60)
+
+
+class grado(models.Model):
+    nombre = models.CharField(max_length=60)
+
+
 class participante(models.Model):
     dni = models.CharField(max_length=8, unique=True)
     paterno = models.CharField(max_length=80)
@@ -9,9 +21,14 @@ class participante(models.Model):
     edad = models.SmallIntegerField()
     direccion = models.CharField(max_length=140)
     email = models.EmailField()
-    fijo = models.
-    movil = models.
+    fijo = models.BigIntegerField()
+    movil = models.BigIntegerField()
 
+    universidad = models.ForeignKey(universidad)
+    facultad = models.CharField(max_length=140)
+    carrera = models.CharField(max_length=140)
+    titulo = models.CharField(max_length=140)
+    cargo = models.ForeignKey(cargo)
+    grado = models.ForeignKey(grado)
 
-    def __unicode__(self):
-        return "Persona %s" % (self.dni)
+    investigacion = models.TextField()
