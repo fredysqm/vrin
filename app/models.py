@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 
 class universidad(models.Model):
@@ -13,21 +15,32 @@ class grado(models.Model):
     def __unicode__(self): return "%s" % (self.nombre)
 
 class participante(models.Model):
-    dni = models.CharField(max_length=8, unique=True)
-    paterno = models.CharField(max_length=80)
-    materno = models.CharField(max_length=80)
-    nombre = models.CharField(max_length=100)
-    edad = models.SmallIntegerField()
-    direccion = models.CharField(max_length=140)
-    email = models.EmailField()
-    fijo = models.CharField(max_length=12)
-    movil = models.CharField(max_length=12)
-    universidad = models.ForeignKey(universidad)
-    facultad = models.CharField(max_length=140)
-    carrera = models.CharField(max_length=140)
-    titulo = models.CharField(max_length=140)
-    cargo = models.ForeignKey(cargo)
-    grado = models.ForeignKey(grado)
-    investigacion = models.TextField()
+    dni = models.CharField(max_length=8, unique=True, verbose_name="DNI")
+    paterno = models.CharField(max_length=80, verbose_name="Apellido Paterno")
+    materno = models.CharField(max_length=80, verbose_name="Apellido Materno")
+    nombre = models.CharField(max_length=100, verbose_name="Nombre(s)")
+    edad = models.SmallIntegerField(verbose_name="Edad")
+    direccion = models.CharField(max_length=140, verbose_name="Dirección")
+    email = models.EmailField(verbose_name="Email")
+    fijo = models.CharField(max_length=12, verbose_name="Teléfono Fijo")
+    movil = models.CharField(max_length=12, verbose_name="Teléfono Movil")
+    universidad = models.ForeignKey(universidad, verbose_name="Universidad")
+    facultad = models.CharField(max_length=140, verbose_name="Facultad")
+    carrera = models.CharField(max_length=140, verbose_name="Carrera")
+    titulo = models.CharField(max_length=140, verbose_name="Título")
+    cargo = models.ForeignKey(cargo, verbose_name="Cargo")
+    grado = models.ForeignKey(grado, verbose_name="Grado")
+    investigacion = models.TextField(verbose_name="Trabajos de Investigación")
     ingreso = models.DateField(auto_now=True)
     def __unicode__(self): return "%s" % (self.dni)
+
+    def save(self):
+       self.paterno = self.paterno.upper()
+       self.materno = self.materno.upper()
+       self.nombre = self.nombre.upper()
+       self.direccion = self.direccion.upper()
+       self.email = self.email.lower()
+       self.facultad = self.facultad.upper()
+       self.carrera = self.carrera.upper()
+       self.titulo = self.titulo.upper()
+       super(participante, self).save()
