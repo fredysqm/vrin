@@ -5,7 +5,8 @@ from django.core.validators import (MaxLengthValidator, MinLengthValidator, Rege
     MinValueValidator, MaxValueValidator, validate_email)
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Field
+from crispy_forms.layout import Submit, Layout, Field, Button
+from crispy_forms.bootstrap import PrependedText, PrependedAppendedText, FormActions
 
 from models import participante
 
@@ -25,12 +26,35 @@ class participante_form(forms.ModelForm):
         self.fields["titulo"].required=False
         self.fields["investigacion"].required=False
 
-    helper = FormHelper()
-    helper.form_method = 'POST'
-    helper.form_class = 'form-horizontal'
-    helper.label_class = 'col-md-3'
-    helper.field_class = 'col-md-9'
-    helper.add_input(Submit('submit', 'Inscripción', css_class='btn-primary'))
+        self.helper = FormHelper(self)
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+
+        self.helper.layout = Layout(
+            PrependedText('dni', '#'),
+            'paterno',
+            'materno',
+            'nombre',
+            PrependedText('edad', '#'),
+            'direccion',
+            PrependedText('email', '@'),
+            PrependedText('fijo', '#'),
+            PrependedText('movil', '#'),
+            'universidad',
+            'facultad',
+            'carrera',
+            'titulo',
+            'cargo',
+            'grado',
+            'investigacion',
+            FormActions(
+                Button('cancel', 'Cancelar', css_class='btn-default', onclick='history.go(-1);'),
+                Submit('submit', u'Inscripción'),
+                css_class='text-right'
+            ),
+        )
 
     class Meta:
         model = participante
