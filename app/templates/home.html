@@ -6,96 +6,105 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Semana de Investigación - UNSAAC</title>
-
-    <!-- css -->
-    <link href="{% static 'css/uikit.css' %}" rel="stylesheet">
-
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <!--[if lt IE 9]>
         <script src="{% static 'js/html5shiv.js' %}"></script>
         <script src="{% static 'js/respond.min.js' %}"></script>
     <![endif]-->
 </head>
 <body>
-    <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
-
-        <nav class="uk-navbar uk-margin-large-bottom">
-            <a class="uk-navbar-brand uk-hidden-small" href="#">Semana de Investigación - UNSAAC</a>
-            <div class="uk-navbar-brand uk-navbar-center uk-visible-small">UNSAAC</div>
-        </nav>
-
-        <div class="uk-grid" data-uk-grid-margin>
-
-            <div class="uk-width-medium-2-3">
-                <div class="uk-panel uk-panel-header">
-
-                    <h2><i class="uk-icon-book"></i> Inscripción</h2>
-
-                    <h3 class="uk-panel-title">Datos Personales</h3>
-
-                    <form class="uk-form uk-form-stacked">
-
-                        {{ form.as_p }}
-
-                        <div class="uk-form-row">
-                            <label class="uk-form-label">Your Name</label>
-                            <div class="uk-form-controls">
-                                <input type="text" placeholder="" class="uk-width-1-1">
-                            </div>
-                        </div>
-
-                        <div class="uk-form-row">
-                            <label class="uk-form-label">Your Email</label>
-                            <div class="uk-form-controls">
-                                <input type="text" placeholder="" class="uk-width-1-1">
-                            </div>
-                        </div>
-
-                        <div class="uk-form-row">
-                            <label class="uk-form-label">Your Message</label>
-                            <div class="uk-form-controls">
-                                <textarea class="uk-width-1-1" id="form-h-t" cols="100" rows="9"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="uk-form-row">
-                            <div class="uk-form-controls">
-                                <button class="uk-button uk-button-primary"><i class="uk-icon-flash"></i>  Inscribirme</button>
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">UNSAAC - Semana de Investigación</a>
             </div>
+        </div>
+    </div>
 
-            <div class="uk-width-medium-1-3">
-                <div class="uk-panel uk-panel-box uk-panel-box-secondary">
-                    <h3 class="uk-panel-title">Contact Details</h3>
-                    <p>
-                        <strong>Company Name</strong>
-                        <br>Street, Country
-                        <br>Postal Zip Code
-                    </p>
-                    <p>
-                        <a>youremail@yourdomain.com</a>
-                        <br><a>@YourTwitterAccount</a><br>
-                        P+44 (0) 208 0000 000
-                    </p>
-                    <h3 class="uk-h4">Follow Us</h3>
-                    <p>
-                        <a href="#" class="uk-icon-button uk-icon-github"></a>
-                        <a href="#" class="uk-icon-button uk-icon-twitter"></a>
-                        <a href="#" class="uk-icon-button uk-icon-dribbble"></a>
-                        <a href="#" class="uk-icon-button uk-icon-html5"></a>
-                    </p>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form class="form-horizontal">
+                  <fieldset>
+                    <legend>Legend</legend>
+                    <div class="form-group">
+                      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                      <div class="col-lg-10">
+                        <input class="form-control" id="inputEmail" placeholder="Email" type="text">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                      <div class="col-lg-10">
+                        <input class="form-control" id="inputPassword" placeholder="Password" type="password">
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox"> Checkbox
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+                      <div class="col-lg-10">
+                        <textarea class="form-control" rows="3" id="textArea"></textarea>
+                        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-lg-2 control-label">Radios</label>
+                      <div class="col-lg-10">
+                        <div class="radio">
+                          <label>
+                            <input name="optionsRadios" id="optionsRadios1" value="option1" checked="" type="radio">
+                            Option one is this
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
+                            Option two can be something else
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="select" class="col-lg-2 control-label">Selects</label>
+                      <div class="col-lg-10">
+                        <select class="form-control" id="select">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                        <br>
+                        <select multiple="" class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-lg-10 col-lg-offset-2">
+                        <button class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+            </div>
+            <div class="col-md-4">
+                Contacto
             </div>
         </div>
 
-    </div>
 
-    <!-- javascript -->
+    </div>
     <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/uikit.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
