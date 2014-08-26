@@ -50,7 +50,6 @@ class participante_form(forms.ModelForm):
             'grado',
             'investigacion',
             FormActions(
-                Button('cancel', 'Cancelar', css_class='btn-default', onclick='history.go(-1);'),
                 Submit('submit', u'Inscripción'),
                 css_class='text-right'
             ),
@@ -58,3 +57,22 @@ class participante_form(forms.ModelForm):
 
     class Meta:
         model = participante
+
+
+class constancia_form(forms.Form):
+    item = forms.CharField(label='ID ó DNI', max_length=8)
+    item.validators.append(MinLengthValidator(1))
+    item.validators.append(MaxLengthValidator(8))
+    item.validators.append(RegexValidator(regex="^[0-9]+$"))
+    helper = FormHelper()
+    helper.form_method = 'POST'
+    helper.form_class = 'form-horizontal'
+    helper.label_class = 'col-md-3'
+    helper.field_class = 'col-md-9'
+    helper.layout = Layout(
+        PrependedText('item', '#'),
+        FormActions(
+            Submit('submit', u'Constancia'),
+            css_class='text-right'
+        ),
+    )

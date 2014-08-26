@@ -6,6 +6,10 @@ class universidad(models.Model):
     nombre = models.CharField(max_length=140)
     def __unicode__(self): return "%s" % (self.nombre)
 
+    class Meta:
+        verbose_name = ('universidad')
+        verbose_name_plural = ('universidades')
+
 class cargo(models.Model):
     nombre = models.CharField(max_length=60)
     def __unicode__(self): return "%s" % (self.nombre)
@@ -35,12 +39,12 @@ class participante(models.Model):
     def __unicode__(self): return "%s" % (self.dni)
 
     def save(self):
-       self.paterno = self.paterno.upper()
-       self.materno = self.materno.upper()
-       self.nombre = self.nombre.upper()
-       self.direccion = self.direccion.upper()
-       self.email = self.email.lower()
-       self.facultad = self.facultad.upper()
-       self.carrera = self.carrera.upper()
-       self.titulo = self.titulo.upper()
-       super(participante, self).save()
+        self.paterno = self.paterno.upper()
+        self.materno = self.materno.upper()
+        self.nombre = self.nombre.upper()
+        self.direccion = self.direccion.upper()
+        self.email = self.email.lower()
+        self.facultad = self.facultad.upper()
+        self.carrera = self.carrera.upper()
+        self.titulo = self.titulo.upper()
+        super(participante, self).save()
