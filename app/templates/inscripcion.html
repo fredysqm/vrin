@@ -1,49 +1,8 @@
-{% load staticfiles %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UNSAAC - Semana de Investigación</title>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <!--[if lt IE 9]>
-        <script src="{% static 'js/html5shiv.js' %}"></script>
-        <script src="{% static 'js/respond.min.js' %}"></script>
-    <![endif]-->
-</head>
-<body>
-    <div class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="{% url 'inscripcion_url' %}" class="navbar-brand">UNSAAC - Semana de Investigación</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="well bs-component">
-                    {% crispy form %}
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h3>Contacto</h3>
-                <p>
-                    <strong>Universidad Nacional de San Antonio Abad del Cusco</strong>
-                    <br>Av. de la Cultura, Nro. 733, Cusco - Perú
-                    <br>Apartado Postal Nro 921
-                </p>
-                <p>
-                    <a>webmaster@unsaac.edu.pe</a>
-                    <br>Telf. 51.84.604100 - Fax 51.84.238156
-                </p>
-            </div>
-        </div>
-    </div>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
-</html>
+{% block title %}Inscripción{% endblock %}
+{% block content %}
+<div class="well bs-component">
+    {% crispy form %}
+</div>
+{% endblock %}
