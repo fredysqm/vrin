@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Inscripción{% endblock %}
+{% block content %}
+<h3><span class="glyphicon glyphicon-ok"></span> Inscripción Completa</h3>
+<p class="text-justify">
+{{inscrito.nombre}}, estas inscrito(a) para La <strong>III Semana de la Investigación UNSAAC 2014</strong>, a continuación debes imprimir la constancia para asistencia al evento.
+</p>
+<p>
+Tu id de inscripción es: {{inscrito.pk}}
+</p>
+<p>
+<a href="{% url 'constancia_url' %}">Generar Constancia</a>
+</p>
+{% endblock %}

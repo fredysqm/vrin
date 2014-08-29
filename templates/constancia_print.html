@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <title>UNSAAC - Constancia de Incripción</title>
+
+    <!-- css -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+        <script src="{% static 'js/html5shiv.js' %}"></script>
+        <script src="{% static 'js/respond.min.js' %}"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <h4><span class="glyphicon glyphicon-list-alt"></span> Constancia de Inscripción</h4>
+        <h5>III Semana de la Investigación UNSAAC 2014</h5>
+        <div id="bcTarget"></div>
+        <p>Apellidos: {{inscrito.paterno}}-{{inscrito.materno}}</p>
+        <p>Nombres: {{inscrito.nombre}}</p>
+        <p>Universidad: {{inscrito.universidad}}</p>
+        <p>Cargo: {{inscrito.cargo}}</p>
+    </div>
+
+    <!-- javascript -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-barcode.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        $( document ).ready(function() {
+            $("#bcTarget").barcode("{{inscrito.pk}}", "code128");
+        });
+    </script>
+</body>
+</html>

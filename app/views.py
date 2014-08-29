@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.context_processors import csrf
 
+from models import participante
 from forms import participante_form, constancia_form
 
 
@@ -15,7 +16,8 @@ def inscripcion_view(request):
         form = participante_form(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'inscripcion_final.html')
+            args['inscrito'] = participante.objects.get(dni=form.cleaned_data.get('dni'))
+            return render(request, 'inscripcion_final.html', args)
     else:
         form = participante_form()
     args['form'] = form
@@ -30,10 +32,13 @@ def constancia_view(request):
         if form.is_valid():
             item = form.cleaned_data.get('item')
             if len(item) < 8:
-                item = int(item)
+                inscrito = participante.objects.get(pk=int(item))
             else:
-                pass
-            return render(request, 'constancia_print.html')
+                inscrito = participante.objects.get(dni=item)
+
+            args['inscrito'] = inscrito
+            if inscrito:
+                return render(request, 'constancia_print.html', args)
     else:
         form = constancia_form()
     args['form'] = form
