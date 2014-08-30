@@ -5,10 +5,6 @@ from models import participante
 from forms import participante_form, constancia_form
 
 
-def home_view(request):
-    return render(request, 'home.html')
-
-
 def inscripcion_view(request):
     args = {}
     args.update(csrf(request))
