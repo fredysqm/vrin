@@ -35,3 +35,7 @@ Thumbs.db
 .settings
 .project
 .pydevproject
+
+# project
+vrin/settings/local.py
+static_public/*
