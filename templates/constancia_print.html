@@ -34,7 +34,7 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script>
         $( document ).ready(function() {
-            $("#bcTarget").barcode("{{inscrito.pk}}", "code128");
+            $("#bcTarget").barcode("{{inscrito.dni}}", "code128");
         });
     </script>
 </body>
