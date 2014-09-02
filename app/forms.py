@@ -18,6 +18,7 @@ class participante_form(forms.ModelForm):
         self.fields["dni"].validators.append(RegexValidator(regex="^[0-9]+$"))
         self.fields["edad"].validators.append(MinValueValidator(8))
         self.fields["edad"].validators.append(MaxValueValidator(128))
+        self.fields["edad"].required=False
         self.fields["email"].validators.append(validate_email)
         self.fields["fijo"].validators.append(RegexValidator(regex="^[0-9]+$"))
         self.fields["fijo"].required=False
