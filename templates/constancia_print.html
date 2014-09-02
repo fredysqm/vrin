@@ -18,14 +18,19 @@
     <![endif]-->
 </head>
 <body>
-    <div class="container">
-        <h4><span class="glyphicon glyphicon-list-alt"></span> Constancia de Inscripción</h4>
-        <h5>III Semana de la Investigación UNSAAC 2014</h5>
-        <div id="bcTarget"></div>
-        <p>Apellidos: {{inscrito.paterno}}-{{inscrito.materno}}</p>
-        <p>Nombres: {{inscrito.nombre}}</p>
-        <p>Universidad: {{inscrito.universidad}}</p>
-        <p>Cargo: {{inscrito.cargo}}</p>
+    <div class="container" style="color:#000000;">
+        <div style="border:2px solid; padding: 3px; margin: 6px;border-color:#000;width:450px;">
+            <h4 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> Constancia de Inscripción</h4>
+            <h5 class="text-center">III Semana de la Investigación - UNSAAC 2014</h5>
+            <center>
+                <div id="bcTarget"></div>
+            </center>
+            <p>Id: {{inscrito.pk}}</p>
+            <p>Apellidos: {{inscrito.paterno}}-{{inscrito.materno}}</p>
+            <p>Nombres: {{inscrito.nombre}}</p>
+            <p>Universidad: {{inscrito.universidad}}</p>
+            <p>Cargo: {{inscrito.cargo}}</p>
+        <div>
     </div>
 
     <!-- javascript -->
