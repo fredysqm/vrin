@@ -14,6 +14,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     'crispy_forms',
+    'debug_toolbar.apps.DebugToolbarConfig',
 )
 
 MIDDLEWARE_CLASSES = (
