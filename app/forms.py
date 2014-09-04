@@ -58,6 +58,7 @@ class participante_form(forms.ModelForm):
 
     class Meta:
         model = participante
+        exclude = ()
 
 
 class constancia_form(forms.Form):
