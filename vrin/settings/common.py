@@ -29,6 +29,10 @@ PIPELINE_COMPILERS = (
     'pipeline.compilers.stylus.StylusCompiler',
 )
 
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
+PIPELINE_CSSMIN_BINARY = 'cssmin'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
+
 PIPELINE_CSS = {
     'all': {
         'source_filenames': (
@@ -43,7 +47,6 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/jquery.js',
             'js/bootstrap.js',
-            'js/jquery-barcode.js',
         ),
         'output_filename': 'js/all.js',
     },

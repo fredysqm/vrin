@@ -26,6 +26,7 @@
     </div>
 
     {% compressed_js 'all' %}
+    <script src="{% static 'js/jquery-barcode.min.js' %}"></script>
     <script>
         $( document ).ready(function() {
             $("#bcTarget").barcode("{{inscrito.dni}}", "code128");
