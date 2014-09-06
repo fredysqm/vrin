@@ -39,7 +39,7 @@ PIPELINE_CSS = {
             'less/bootstrap.less',
         ),
         'output_filename': 'css/all.css',
-    }
+    },
 }
 
 PIPELINE_JS = {

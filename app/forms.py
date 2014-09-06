@@ -62,19 +62,27 @@ class participante_form(forms.ModelForm):
 
 
 class constancia_form(forms.Form):
-    item = forms.CharField(label='ID ó DNI', max_length=8)
-    item.validators.append(MinLengthValidator(1))
-    item.validators.append(MaxLengthValidator(8))
-    item.validators.append(RegexValidator(regex="^[0-9]+$"))
+    dni = forms.CharField(label='DNI', max_length=8)
+    dni.validators.append(MinLengthValidator(1))
+    dni.validators.append(MaxLengthValidator(8))
+    dni.validators.append(RegexValidator(regex="^[0-9]+$"))
     helper = FormHelper()
     helper.form_method = 'POST'
     helper.form_class = 'form-horizontal'
     helper.label_class = 'col-md-3'
     helper.field_class = 'col-md-9'
     helper.layout = Layout(
-        PrependedText('item', '#'),
+        PrependedText('dni', '#'),
         FormActions(
             Submit('submit', u'Constancia'),
             css_class='text-right'
         ),
     )
+
+    def clean_dni(self):
+        item = self.cleaned_data['dni']
+        try:
+            inscrito = participante.objects.get(dni=item)
+        except:
+            raise forms.ValidationError(u'DNI no esta registrado.')
+        return item

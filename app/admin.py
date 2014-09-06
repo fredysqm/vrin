@@ -17,8 +17,8 @@ class grado_admin(admin.ModelAdmin):
     search_fields = ('nombre',)
 
 class participante_admin(admin.ModelAdmin):
-    list_display = ('id', 'dni', 'paterno', 'materno', 'nombre')
-    list_editable = ('dni', 'paterno', 'materno', 'nombre')
+    list_display = ('dni', 'paterno', 'materno', 'nombre')
+    list_editable = ('paterno', 'materno', 'nombre')
     search_fields = ('dni', 'paterno', 'materno', 'nombre')
     list_filter = ('grado', 'cargo')
 

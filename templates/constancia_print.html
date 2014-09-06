@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-    <title>UNSAAC - Constancia de Incripción</title>
+    <title>III Semana de Investigación - Constancia de Incripción</title>
     {% compressed_css 'all' %}
 </head>
 <body>
-    <div class="container" style="color:#000000;">
+    <div class="container">
         <div style="border:2px solid; padding: 3px; margin: 6px;border-color:#000;width:450px;">
             <h4 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> Constancia de Inscripción</h4>
             <h5 class="text-center">III Semana de la Investigación - UNSAAC 2014</h5>
             <center>
                 <div id="bcTarget"></div>
             </center>
-            <p>Id: {{inscrito.pk}}</p>
-            <p>Apellidos: {{inscrito.paterno}}-{{inscrito.materno}}</p>
+            <p>DNI: {{inscrito.pk}}</p>
+            <p>Apellidos: {{inscrito.paterno}} - {{inscrito.materno}}</p>
             <p>Nombres: {{inscrito.nombre}}</p>
             <p>Universidad: {{inscrito.universidad}}</p>
             <p>Cargo: {{inscrito.cargo}}</p>
-        <div>
+        </div>
+        <div class="text-right" style="padding: 3px; margin: 6px;border-color:#000;width:450px;">
+            <a class="btn btn-primary btn-xs" href="{% url 'constancia_url' %}"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+            <a onclick="window.print();" class="btn btn-primary btn-xs" href=""><span class="glyphicon glyphicon glyphicon-print"></span> Imprimir</a>
+        </div>
     </div>
 
     {% compressed_js 'all' %}

@@ -19,7 +19,7 @@ class grado(models.Model):
     def __unicode__(self): return "%s" % (self.nombre)
 
 class participante(models.Model):
-    dni = models.CharField(max_length=8, unique=True, verbose_name="DNI")
+    dni = models.CharField(max_length=8, primary_key=True, verbose_name="DNI")
     paterno = models.CharField(max_length=80, verbose_name="Apellido Paterno")
     materno = models.CharField(max_length=80, verbose_name="Apellido Materno")
     nombre = models.CharField(max_length=100, verbose_name="Nombre(s)")

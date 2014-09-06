@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 
 from models import participante
@@ -26,15 +28,10 @@ def constancia_view(request):
     if request.method == 'POST':
         form = constancia_form(request.POST)
         if form.is_valid():
-            item = form.cleaned_data.get('item')
-            if len(item) < 8:
-                inscrito = participante.objects.get(pk=int(item))
-            else:
-                inscrito = participante.objects.get(dni=item)
-
-            args['inscrito'] = inscrito
-            if inscrito:
-                return render(request, 'constancia_print.html', args)
+            item = form.cleaned_data.get('dni')
+            return HttpResponseRedirect(
+                reverse('constancia_print_url', args=[item])
+                )
     else:
         form = constancia_form()
     args['form'] = form
@@ -42,4 +39,7 @@ def constancia_view(request):
 
 
 def constancia_print_view(request, id):
-    return render(render, 'constancia_print.html', id)
+    args = {}
+    inscrito = get_object_or_404(participante,dni=id)
+    args['inscrito'] = inscrito
+    return render(request, 'constancia_print.html', args)
