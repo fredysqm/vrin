@@ -1,5 +1,4 @@
-{% load staticfiles %}
-<!DOCTYPE html>
+{% load staticfiles %}{% load compressed %}<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -8,14 +7,7 @@
 
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     <title>UNSAAC - Constancia de Incripción</title>
-
-    <!-- css -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!--[if lt IE 9]>
-        <script src="{% static 'js/html5shiv.js' %}"></script>
-        <script src="{% static 'js/respond.min.js' %}"></script>
-    <![endif]-->
+    {% compressed_css 'all' %}
 </head>
 <body>
     <div class="container" style="color:#000000;">
@@ -33,10 +25,7 @@
         <div>
     </div>
 
-    <!-- javascript -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/jquery-barcode.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% compressed_js 'all' %}
     <script>
         $( document ).ready(function() {
             $("#bcTarget").barcode("{{inscrito.dni}}", "code128");

@@ -11,7 +11,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
@@ -22,3 +22,29 @@ TEMPLATE_DIRS = (
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+PIPELINE_COMPILERS = (
+    'pipeline.compilers.coffee.CoffeeScriptCompiler',
+    'pipeline.compilers.less.LessCompiler',
+    'pipeline.compilers.stylus.StylusCompiler',
+)
+
+PIPELINE_CSS = {
+    'all': {
+        'source_filenames': (
+            'less/bootstrap.less',
+        ),
+        'output_filename': 'css/all.css',
+    }
+}
+
+PIPELINE_JS = {
+    'all': {
+        'source_filenames': (
+            'js/jquery.js',
+            'js/bootstrap.js',
+            'js/jquery-barcode.js',
+        ),
+        'output_filename': 'js/all.js',
+    },
+}
