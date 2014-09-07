@@ -21,6 +21,7 @@ class participante_admin(admin.ModelAdmin):
     list_editable = ('paterno', 'materno', 'nombre')
     search_fields = ('dni', 'paterno', 'materno', 'nombre')
     list_filter = ('grado', 'cargo')
+    ordering = ['-ingreso']
 
 admin.site.register(universidad, universidad_admin)
 admin.site.register(cargo, cargo_admin)

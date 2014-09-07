@@ -6,10 +6,8 @@ ROOT_URLCONF = 'vrin.urls'
 WSGI_APPLICATION = 'vrin.wsgi.application'
 
 LANGUAGE_CODE = 'es-PE'
-TIME_ZONE = 'America/Lima'
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
 
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 STATIC_URL = '/static/'
