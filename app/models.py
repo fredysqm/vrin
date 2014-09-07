@@ -35,7 +35,7 @@ class participante(models.Model):
     cargo = models.ForeignKey(cargo, verbose_name="Cargo")
     grado = models.ForeignKey(grado, verbose_name="Grado")
     investigacion = models.TextField(verbose_name="Trabajos de Investigación")
-    ingreso = models.DateField(auto_now=True)
+    ingreso = models.DateTimeField(auto_now=True)
     def __unicode__(self): return "%s" % (self.dni)
 
     def save(self):
