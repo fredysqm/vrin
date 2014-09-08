@@ -8,5 +8,7 @@ urlpatterns = patterns('app.views',
     url(r'^inscripcion/$', 'inscripcion_view', name='inscripcion_url'),
     url(r'^constancia/$', 'constancia_view', name='constancia_url'),
     url(r'^constancia/(\d+)/$', 'constancia_print_view', name='constancia_print_url'),
+    url(r'^asistencia/$', 'asistencia_view', name='asistencia_url'),
+    url(r'^asistencia/(\d+)/(\d+)/$', 'asistencia_registro_view', name='asistencia_registro_url'),
     url(r'^admin/', include(admin.site.urls)),
 )

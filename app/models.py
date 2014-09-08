@@ -48,3 +48,19 @@ class participante(models.Model):
         self.carrera = self.carrera.upper()
         self.titulo = self.titulo.upper()
         super(participante, self).save()
+
+class evento(models.Model):
+    nombre = models.CharField(max_length=60)
+    cerrado = models.BooleanField(default=False)
+    fecha_hora = models.DateTimeField()
+    def __unicode__(self): return "%s" % (self.nombre)
+
+
+class asistencia(models.Model):
+    evento = models.ForeignKey(evento, verbose_name='Evento')
+    participante  = models.ForeignKey(participante, verbose_name='Participante')
+    fecha_hora = models.DateTimeField(auto_now=True)
+    def __unicode__(self): return "%s-%s" % (self.evento, self.participante)
+
+    class Meta:
+        unique_together = ('evento', 'participante',)

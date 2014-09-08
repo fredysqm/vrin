@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import login_required
 
-from models import participante
+from models import participante, evento, asistencia
 from forms import participante_form, constancia_form
 
 
@@ -43,3 +44,26 @@ def constancia_print_view(request, id):
     inscrito = get_object_or_404(participante,dni=id)
     args['inscrito'] = inscrito
     return render(request, 'constancia_print.html', args)
+
+
+@login_required()
+def asistencia_view(request):
+    args = {}
+    return render(request, 'asistencia.html', args)
+
+
+@login_required()
+def asistencia_registro_view(request, evento_id, participante_id):
+    o_evento = get_object_or_404(evento,pk=evento_id)
+    if not o_evento.cerrado:
+        o_participante = get_object_or_404(participante,pk=participante_id)
+        try:
+            obj = asistencia()
+            obj.evento = o_evento
+            obj.participante = o_participante
+            obj.save()
+        except:
+            return HttpResponse('duplicado')
+        return HttpResponse('ok')
+    else:
+        return HttpResponse('evento cerrado')

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Asistencia{% endblock %}
+{% block content %}
+<h3><span class="glyphicon glyphicon-search"></span> Control Asistencia</h3>
+<div class="well bs-component">
+    <form method="post" >
+         <div id="div_id_evento" class="form-group">
+            <label for="id_evento" class="control-label  requiredField">Evento<span class="asteriskField">*</span></label>
+            <div class="controls ">
+                <select class="select form-control" id="id_evento" name="evento">
+                    <option value="" selected="selected">---------</option>
+                    <option value="1">EVENTO1</option>
+                </select>
+            </div>
+        </div>
+        <div id="div_id_participante" class="form-group">
+            <label for="id_participante" class="control-label  requiredField">DNI Participante<span class="asteriskField">*</span></label>
+            <div class="controls ">
+                <input class="textinput textInput form-control" id="id_dni" minlength="8" maxlength="8" name="dni" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#id_dni').keyup(function () {
+                dni = $('#id_dni').val()
+                if ($('#id_dni').val().length == 8) {
+                    $('#id_dni').val('')
+                    evento = $('#id_evento').val()
+                    $.ajax({
+                      url: '/asistencia/' + evento + '/' + dni + '/',
+                    });
+
+                }
+            });
+        });
+    </script>
+{% endblock %}
