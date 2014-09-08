@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from models import participante, evento, asistencia
-from forms import participante_form, constancia_form
+from forms import participante_form, constancia_form, asistencia_form
 
 
 def inscripcion_view(request):
@@ -46,13 +46,14 @@ def constancia_print_view(request, id):
     return render(request, 'constancia_print.html', args)
 
 
-@login_required()
+@login_required(login_url='/admin')
 def asistencia_view(request):
     args = {}
+    args['form'] = asistencia_form()
     return render(request, 'asistencia.html', args)
 
 
-@login_required()
+@login_required(login_url='/admin')
 def asistencia_registro_view(request, evento_id, participante_id):
     o_evento = get_object_or_404(evento,pk=evento_id)
     if not o_evento.cerrado:

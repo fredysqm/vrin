@@ -8,7 +8,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field, Button
 from crispy_forms.bootstrap import PrependedText, PrependedAppendedText, FormActions
 
-from models import participante
+from .models import participante, asistencia, evento
 
 
 class participante_form(forms.ModelForm):
@@ -86,3 +86,27 @@ class constancia_form(forms.Form):
         except:
             raise forms.ValidationError(u'DNI no esta registrado.')
         return item
+
+class asistencia_form(forms.ModelForm):
+    dni = forms.CharField(required=True, )
+
+    def __init__(self, *args, **kwargs):
+        super(asistencia_form, self).__init__(*args, **kwargs)
+        self.fields['evento'].queryset = evento.objects.filter(cerrado=False)
+        self.fields['dni'].widget.attrs['minlength'] = '8'
+        self.fields['dni'].widget.attrs['maxlength'] = '8'
+        self.fields['dni'].widget.attrs['autocomplete'] = 'off'
+        self.helper = FormHelper(self)
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+
+        self.helper.layout = Layout(
+            'evento',
+            PrependedText('dni', '#'),
+        )
+
+    class Meta:
+        model = asistencia
+        exclude = ()
