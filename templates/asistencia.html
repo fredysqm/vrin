@@ -25,7 +25,12 @@
             $('#id_dni').keyup(function () {
                 dni = $('#id_dni').val()
                 if ( $('#id_dni').val().length == 8 && !$("#id_dni").prop("readonly") ) {
-                    //$('#id_dni').val('')
+                    if ($("#id_evento").val() == '') {
+                        alert('Seleccione evento.');
+                        $('#id_dni').val('');
+                        return false;
+                    }
+
                     $("#id_dni").prop("readonly",true);
                     $('#mensaje').empty();
                     $('#mensaje').after(simg);
@@ -33,6 +38,7 @@
                     evento = $('#id_evento').val()
                     $.ajax({
                         url: '/asistencia/' + evento + '/' + dni + '/',
+                        timeout: 6000,
                     })
                     .done(function(response) {
                         $('#simg').remove();
@@ -40,7 +46,7 @@
                     })
                     .fail(function() {
                         $('#simg').remove();
-                        $('#mensaje').append('¡DNI no está registrado!<br>');
+                        $('#mensaje').append('¡Error de conexión ó DNI no está registrado!, agregado lista de pendientes.<br>');
                         $('#pendientes').append('<small>' + dni + '</small><br>');
                     })
                      .always(function() {
