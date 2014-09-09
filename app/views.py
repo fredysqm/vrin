@@ -46,14 +46,14 @@ def constancia_print_view(request, id):
     return render(request, 'constancia_print.html', args)
 
 
-@login_required(login_url='/admin')
+@login_required(login_url='/admin/')
 def asistencia_view(request):
     args = {}
     args['form'] = asistencia_form()
     return render(request, 'asistencia.html', args)
 
 
-@login_required(login_url='/admin')
+@login_required(login_url='/admin/')
 def asistencia_registro_view(request, evento_id, participante_id):
     o_evento = get_object_or_404(evento,pk=evento_id)
     if not o_evento.cerrado:
@@ -64,7 +64,7 @@ def asistencia_registro_view(request, evento_id, participante_id):
             obj.participante = o_participante
             obj.save()
         except:
-            return HttpResponse('duplicado')
-        return HttpResponse('ok')
+            return HttpResponse('Registrado: ' + str(o_participante) + '<br>')
+        return HttpResponse('Registrado: ' + str(o_participante) + '<br>')
     else:
-        return HttpResponse('evento cerrado')
+        return HttpResponse(u'Evento cerrado!' + '<br>')

@@ -5,30 +5,53 @@
 <h3><span class="glyphicon glyphicon-search"></span> Control Asistencia</h3>
 <div class="well bs-component">
     {% crispy form %}
-    <div id="mensaje"></div>
+    <p id="mensaje"></p>
 </div>
+<p class="text-danger" id="pendientes"></p>
 {% endblock %}
 
 {% block js %}
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#id_dni').keyup(function () {
-                dni = $('#id_dni').val()
-                if ($('#id_dni').val().length == 8) {
-                    $('#id_dni').val('')
-                    evento = $('#id_evento').val()
-                    $.ajax({
-                      url: '/asistencia/' + evento + '/' + dni + '/',
-                    })
-                    .done(function(response) {
-                        $('#mensaje').empty();
-                    })
-                    .fail(function() {
-                        $('#mensaje').empty();
-                        $('#mensaje').append('no existe dni');
-                    })
+            simg = '<img src="/static/img/loading.gif" alt="Cargando" id="simg" />';
+
+            $(window).keydown(function(event){
+                if( (event.keyCode == 13) ) {
+                    event.preventDefault();
+                    return false;
                 }
             });
+
+            $('#id_dni').keyup(function () {
+                dni = $('#id_dni').val()
+                if ( $('#id_dni').val().length == 8 && !$("#id_dni").prop("readonly") ) {
+                    //$('#id_dni').val('')
+                    $("#id_dni").prop("readonly",true);
+                    $('#mensaje').empty();
+                    $('#mensaje').after(simg);
+
+                    evento = $('#id_evento').val()
+                    $.ajax({
+                        url: '/asistencia/' + evento + '/' + dni + '/',
+                    })
+                    .done(function(response) {
+                        $('#simg').remove();
+                        $('#mensaje').append(response);
+                    })
+                    .fail(function() {
+                        $('#simg').remove();
+                        $('#mensaje').append('¡DNI no está registrado!<br>');
+                        $('#pendientes').append('<small>' + dni + '</small><br>');
+                    })
+                     .always(function() {
+                        $('#id_dni').val('')
+                        $("#id_dni").prop("readonly",false);
+                        $("#id_dni").focus();
+                    });
+                }
+            });
+
         });
     </script>
+
 {% endblock %}
