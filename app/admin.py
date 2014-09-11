@@ -4,17 +4,17 @@ from .models import universidad, cargo, grado, participante, evento, asistencia
 class universidad_admin(admin.ModelAdmin):
     list_display = ('id', 'nombre')
     list_editable = ('nombre',)
-    search_fields = ('nombre',)
+    search_fields = ('id', 'nombre',)
 
 class cargo_admin(admin.ModelAdmin):
     list_display = ('id', 'nombre',)
     list_editable = ('nombre',)
-    search_fields = ('nombre',)
+    search_fields = ('id', 'nombre',)
 
 class grado_admin(admin.ModelAdmin):
     list_display = ('id', 'nombre',)
     list_editable = ('nombre',)
-    search_fields = ('nombre',)
+    search_fields = ('id', 'nombre',)
 
 class participante_admin(admin.ModelAdmin):
     list_display = ('dni', 'paterno', 'materno', 'nombre')
@@ -26,11 +26,13 @@ class participante_admin(admin.ModelAdmin):
 class evento_admin(admin.ModelAdmin):
     list_display = ('id', 'nombre','fecha_hora','cerrado')
     list_editable = ('nombre',)
-    search_fields = ('nombre',)
+    search_fields = ('id','nombre',)
 
 class asistencia_admin(admin.ModelAdmin):
     list_display = ('id', 'evento', 'participante', 'fecha_hora')
-    search_fields = ('evento','participante')
+    list_filter = ('evento',)
+    search_fields = ('evento__id', 'evento__nombre','participante__dni','participante__paterno',
+        'participante__materno','participante__nombre')
 
 
 admin.site.register(universidad, universidad_admin)

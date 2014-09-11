@@ -38,7 +38,7 @@
                     evento = $('#id_evento').val()
                     $.ajax({
                         url: '/asistencia/' + evento + '/' + dni + '/',
-                        timeout: 6000,
+                        timeout: 5000,
                     })
                     .done(function(response) {
                         $('#simg').remove();

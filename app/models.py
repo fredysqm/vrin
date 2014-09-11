@@ -60,7 +60,7 @@ class asistencia(models.Model):
     evento = models.ForeignKey(evento, verbose_name='Evento')
     participante  = models.ForeignKey(participante, verbose_name='Participante')
     fecha_hora = models.DateTimeField(auto_now=True)
-    def __unicode__(self): return "%s-%s" % (self.evento, self.participante)
+    def __unicode__(self): return "%s - %s" % (self.evento, self.participante)
 
     class Meta:
         unique_together = ('evento', 'participante',)
