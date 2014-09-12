@@ -33,6 +33,7 @@ class asistencia_admin(admin.ModelAdmin):
     list_filter = ('evento',)
     search_fields = ('evento__id', 'evento__nombre','participante__dni','participante__paterno',
         'participante__materno','participante__nombre')
+    raw_id_fields = ('participante',)
 
 
 admin.site.register(universidad, universidad_admin)

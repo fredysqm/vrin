@@ -36,7 +36,8 @@ class participante(models.Model):
     grado = models.ForeignKey(grado, verbose_name="Grado")
     investigacion = models.TextField(verbose_name="Trabajos de Investigación")
     ingreso = models.DateTimeField(auto_now=True)
-    def __unicode__(self): return "(%s) %s-%s-%s" % (self.dni, self.paterno, self.materno, self.nombre)
+    def __unicode__(self):
+        return u"(%s) %s-%s-%s" % (self.dni, self.paterno, self.materno, self.nombre)
 
     def save(self):
         self.paterno = self.paterno.upper()
