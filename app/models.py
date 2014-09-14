@@ -23,18 +23,18 @@ class participante(models.Model):
     paterno = models.CharField(max_length=80, verbose_name="Apellido Paterno")
     materno = models.CharField(max_length=80, verbose_name="Apellido Materno")
     nombre = models.CharField(max_length=100, verbose_name="Nombre(s)")
-    edad = models.SmallIntegerField(verbose_name="Edad")
+    edad = models.SmallIntegerField(verbose_name="Edad",blank=True)
     direccion = models.CharField(max_length=140, verbose_name="Dirección")
     email = models.EmailField(verbose_name="Email")
-    fijo = models.CharField(max_length=12, verbose_name="Teléfono Fijo")
-    movil = models.CharField(max_length=12, verbose_name="Teléfono Movil")
+    fijo = models.CharField(max_length=12, verbose_name="Teléfono Fijo",blank=True)
+    movil = models.CharField(max_length=12, verbose_name="Teléfono Movil",blank=True)
     universidad = models.ForeignKey(universidad, verbose_name="Universidad")
     facultad = models.CharField(max_length=140, verbose_name="Facultad")
     carrera = models.CharField(max_length=140, verbose_name="Carrera")
-    titulo = models.CharField(max_length=140, verbose_name="Título")
+    titulo = models.CharField(max_length=140, verbose_name="Título",blank=True)
     cargo = models.ForeignKey(cargo, verbose_name="Cargo")
     grado = models.ForeignKey(grado, verbose_name="Grado")
-    investigacion = models.TextField(verbose_name="Trabajos de Investigación")
+    investigacion = models.TextField(verbose_name="Trabajos de Investigación", blank=True)
     ingreso = models.DateTimeField(auto_now=True)
     def __unicode__(self):
         return u"(%s) %s-%s-%s" % (self.dni, self.paterno, self.materno, self.nombre)
@@ -55,7 +55,6 @@ class evento(models.Model):
     cerrado = models.BooleanField(default=False)
     fecha_hora = models.DateTimeField()
     def __unicode__(self): return "%s" % (self.nombre)
-
 
 class asistencia(models.Model):
     evento = models.ForeignKey(evento, verbose_name='Evento')
