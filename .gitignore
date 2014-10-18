@@ -38,4 +38,7 @@ Thumbs.db
 
 # project
 vrin/settings/local.py
+app/migrations/*
 static_public/*
+static/less/*.css
+static/stylus/*.css

@@ -35,6 +35,7 @@ PIPELINE_CSS = {
     'all': {
         'source_filenames': (
             'less/bootstrap.less',
+            'stylus/base.styl',
         ),
         'output_filename': 'css/all.css',
     },
