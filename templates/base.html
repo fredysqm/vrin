@@ -1,4 +1,4 @@
-{% load staticfiles %}{% load compressed %}<!DOCTYPE html>
+{% load staticfiles %}{% load pipeline %}<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     <title>III Semana de Investigación - {% block title %}{% endblock %}</title>
 
-    {% compressed_css 'all' %}
+    {% stylesheet 'all' %}
     {% block css %}{% endblock %}
 </head>
 <body>
@@ -51,7 +51,7 @@
     {% include 'footer.html' %}
     {% block modals %}{% endblock %}
 
-    {% compressed_js 'all' %}
+    {% javascript 'all' %}
     {% block js %}{% endblock %}
 </body>
 </html>

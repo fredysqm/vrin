@@ -3,7 +3,7 @@ from .common import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = ['vrin.roboticaunsaac.club']
+ALLOWED_HOSTS = ['vrin.xen1024.64k.in']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
