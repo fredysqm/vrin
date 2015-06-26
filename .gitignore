@@ -1,4 +1,5 @@
 ﻿# Compiled source
+__pycache__/
 *.com
 *.class
 *.dll
