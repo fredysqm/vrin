@@ -17,9 +17,10 @@ class participante_crear_final_view(DetailView):
 class participante_constancia_view(FormView):
     form_class = participante_constancia_form
     template_name = 'participante/constancia.html'
+
     def get_success_url(self):
         form = self.get_form()
-        print form.cleaned_data.get('dni')
+        print form
         return reverse('participante_constancia_print_url', args=(form.cleaned_data.get('dni'),))
 
 class participante_constancia_print_view(DetailView):
@@ -27,39 +28,12 @@ class participante_constancia_print_view(DetailView):
     template_name = 'participante/constancia_print.html'
 
 
-
-
-# def constancia_view(request):
-#     args = {}
-#     args.update(csrf(request))
-#     if request.method == 'POST':
-#         form = constancia_form(request.POST)
-#         if form.is_valid():
-#             item = form.cleaned_data.get('dni')
-#             return HttpResponseRedirect(
-#                 reverse('constancia_print_url', args=[item])
-#                 )
-#     else:
-#         form = constancia_form()
-#     args['form'] = form
-#     return render(request, 'constancia.html', args)
-
-
-# def constancia_print_view(request, id):
-#     args = {}
-#     inscrito = get_object_or_404(participante,dni=id)
-#     args['inscrito'] = inscrito
-#     return render(request, 'constancia_print.html', args)
-
-
-# @login_required(login_url='/admin/')
 # def asistencia_view(request):
 #     args = {}
 #     args['form'] = asistencia_form()
 #     return render(request, 'asistencia.html', args)
 
 
-# @login_required(login_url='/admin/')
 # def asistencia_registro_view(request, evento_id, participante_id):
 #     o_evento = get_object_or_404(evento,pk=evento_id)
 #     if not o_evento.cerrado:
