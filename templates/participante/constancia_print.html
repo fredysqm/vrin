@@ -17,14 +17,14 @@
             <center>
                 <div id="bcTarget"></div>
             </center>
-            <p>DNI: {{inscrito.pk}}</p>
-            <p>Apellidos: {{inscrito.paterno}} - {{inscrito.materno}}</p>
-            <p>Nombres: {{inscrito.nombre}}</p>
-            <p>Universidad: {{inscrito.universidad}}</p>
-            <p>Cargo: {{inscrito.cargo}}</p>
+            <p>DNI: {{object.pk}}</p>
+            <p>Apellidos: {{object.paterno}} - {{object.materno}}</p>
+            <p>Nombres: {{object.nombre}}</p>
+            <p>Universidad: {{object.universidad}}</p>
+            <p>Cargo: {{object.cargo}}</p>
         </div>
         <div class="text-right" style="padding: 3px; margin: 6px;border-color:#000;width:450px;">
-            <a class="btn btn-primary btn-xs" href="{% url 'constancia_url' %}"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+            <a class="btn btn-primary btn-xs" href="{% url 'participante_constancia_url' %}"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
             <a onclick="window.print();" class="btn btn-primary btn-xs" href=""><span class="glyphicon glyphicon glyphicon-print"></span> Imprimir</a>
         </div>
     </div>
@@ -33,7 +33,7 @@
     <script src="{% static 'js/jquery-barcode.min.js' %}"></script>
     <script>
         $( document ).ready(function() {
-            $("#bcTarget").barcode("{{inscrito.dni}}", "code128");
+            $("#bcTarget").barcode("{{object.dni}}", "code128");
         });
     </script>
 </body>

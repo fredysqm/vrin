@@ -5,18 +5,18 @@ from django.core.validators import (MaxLengthValidator, MinLengthValidator, Rege
     MinValueValidator, MaxValueValidator, validate_email)
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Field, Button
+from crispy_forms.layout import Submit, Layout, Field, Button, Fieldset
 from crispy_forms.bootstrap import PrependedText, PrependedAppendedText, FormActions
 
 from .models import participante, asistencia, evento
 
 
-class participante_form(forms.ModelForm):
+class participante_crear_form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(participante_form, self).__init__(*args, **kwargs)
+        super(participante_crear_form, self).__init__(*args, **kwargs)
         self.fields["dni"].validators.append(MinLengthValidator(8))
         self.fields["dni"].validators.append(RegexValidator(regex="^[0-9]+$"))
-        self.fields["edad"].validators.append(MinValueValidator(8))
+        self.fields["edad"].validators.append(MinValueValidator(12))
         self.fields["edad"].validators.append(MaxValueValidator(128))
         self.fields["edad"].required=False
         self.fields["email"].validators.append(validate_email)
@@ -34,22 +34,24 @@ class participante_form(forms.ModelForm):
         self.helper.field_class = 'col-md-9'
 
         self.helper.layout = Layout(
-            PrependedText('dni', '#'),
-            'paterno',
-            'materno',
-            'nombre',
-            PrependedText('edad', '#'),
-            'direccion',
-            PrependedText('email', '@'),
-            PrependedText('fijo', '#'),
-            PrependedText('movil', '#'),
-            'universidad',
-            'facultad',
-            'carrera',
-            'titulo',
-            'cargo',
-            'grado',
-            'investigacion',
+            Fieldset(u'<span class="glyphicon glyphicon-pencil"></span> Formato de Inscripción',
+                PrependedText('dni', '#'),
+                'paterno',
+                'materno',
+                'nombre',
+                PrependedText('edad', '#'),
+                'direccion',
+                PrependedText('email', '@'),
+                PrependedText('fijo', '#'),
+                PrependedText('movil', '#'),
+                'universidad',
+                'facultad',
+                'carrera',
+                'titulo',
+                'cargo',
+                'grado',
+                'investigacion',
+            ),
             FormActions(
                 Submit('submit', u'Inscripción'),
                 css_class='text-right'
@@ -61,7 +63,7 @@ class participante_form(forms.ModelForm):
         exclude = ()
 
 
-class constancia_form(forms.Form):
+class participante_constancia_form(forms.Form):
     dni = forms.CharField(label='DNI', max_length=8)
     dni.validators.append(MinLengthValidator(1))
     dni.validators.append(MaxLengthValidator(8))
@@ -72,7 +74,10 @@ class constancia_form(forms.Form):
     helper.label_class = 'col-md-3'
     helper.field_class = 'col-md-9'
     helper.layout = Layout(
-        PrependedText('dni', '#'),
+        Fieldset(u'<span class="glyphicon glyphicon-pencil"></span> Reporte Constancia',
+                PrependedText('dni', '#'),
+        ),
+
         FormActions(
             Submit('submit', u'Constancia'),
             css_class='text-right'
