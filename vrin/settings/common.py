@@ -9,8 +9,6 @@ LANGUAGE_CODE = 'es-PE'
 USE_I18N = True
 USE_L10N = True
 
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
@@ -21,32 +19,8 @@ TEMPLATE_DIRS = (
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-PIPELINE_COMPILERS = (
-    'pipeline.compilers.coffee.CoffeeScriptCompiler',
-    'pipeline.compilers.less.LessCompiler',
-    'pipeline.compilers.stylus.StylusCompiler',
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 )
-
-PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
-PIPELINE_CSSMIN_BINARY = 'cssmin'
-PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
-
-PIPELINE_CSS = {
-    'all': {
-        'source_filenames': (
-            'less/bootstrap.less',
-            'stylus/base.styl',
-        ),
-        'output_filename': 'css/all.css',
-    },
-}
-
-PIPELINE_JS = {
-    'all': {
-        'source_filenames': (
-            'js/jquery.js',
-            'js/bootstrap.js',
-        ),
-        'output_filename': 'js/all.js',
-    },
-}

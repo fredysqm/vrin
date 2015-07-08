@@ -1,0 +1,5 @@
+Django
+MySQL-python
+django-crispy-forms
+djangorestframework
+django_compressor

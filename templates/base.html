@@ -1,4 +1,4 @@
-{% load staticfiles %}{% load pipeline %}<!DOCTYPE html>
+{% load staticfiles %}{% load compress %}<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,10 @@
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     <title>III Semana de Investigación - {% block title %}{% endblock %}</title>
 
-    {% stylesheet 'all' %}
+    {% compress css %}
+        <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="/static/css/base.css" type="text/css" charset="utf-8">
+    {% endcompress %}
     {% block css %}{% endblock %}
 </head>
 <body>
@@ -51,7 +54,11 @@
     {% include 'footer.html' %}
     {% block modals %}{% endblock %}
 
-    {% javascript 'all' %}
+    {% compress js %}
+        <script src="/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/static/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/static/js/jquery-barcode.js" type="text/javascript" charset="utf-8"></script>
+    {% endcompress %}
     {% block js %}{% endblock %}
 </body>
 </html>
