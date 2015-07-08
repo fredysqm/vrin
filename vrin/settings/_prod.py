@@ -3,7 +3,6 @@ from .common import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = ['vrin.xen1024.64k.in']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -32,11 +31,11 @@ MIDDLEWARE_CLASSES = (
 
 # CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#         'LOCATION': '127.0.0.1:11211',
-#     }
-# }
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
 
-# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
