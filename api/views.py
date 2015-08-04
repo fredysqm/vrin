@@ -1,6 +1,8 @@
 from rest_framework import viewsets
+
 from .serializers import participante_serializer, universidad_serializer
 from app.models import participante, universidad
+
 
 class participante_view_set(viewsets.ModelViewSet):
     queryset = participante.objects.all()

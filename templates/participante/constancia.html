@@ -1,8 +1,28 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% block title %}Constancia{% endblock %}
 {% block content %}
 <div class="well bs-component">
-    {% crispy form %}
+
+<form  class="form-horizontal" method="post" >
+<fieldset>
+    <legend>
+        <span class="glyphicon glyphicon-pencil"></span> Reporte Constancia
+    </legend>
+    <div id="div_id_dni" class="form-group">
+        <label for="id_dni" class="control-label col-md-3 requiredField">DNI<span class="asteriskField">*</span>
+        </label>
+        <div class="controls col-md-9">
+            <div class="input-group">
+                <span class="input-group-addon">#</span>
+                <input class="textinput textInput form-control" id="id_dni" maxlength="8" name="dni" type="text" />
+            </div>
+            <span id="error_id_dni" class="help-block"><strong id="error_mensaje_id_dni">Este campo es requerido.</strong></span>
+        </div>
+    </div>
+</fieldset>
+    <div  class="text-right" class="form-actions">
+        <input type="button" value="Constancia" class="btn btn-primary" id="submit-id-submit" />
+    </div>
+</form>
 </div>
 {% endblock %}
