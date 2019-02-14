@@ -2,8 +2,8 @@
 
 from django.db import models
 
-class universidad(models.Model):
-    nombre = models.CharField(max_length=140)
+class slink(models.Model):
+    keyword = models.CharField(max_length=140)
     def __unicode__(self): return "%s" % (self.nombre)
 
     class Meta:
